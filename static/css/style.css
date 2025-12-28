@@ -33,7 +33,7 @@ body {
 }
 
 .robot-section img {
-  max-width: 300px;
+  max-width: 500px;
   width: 100%;
   height: auto;
   filter: drop-shadow(0 0 30px rgba(120, 80, 255, 0.6));
@@ -53,6 +53,8 @@ body {
     0 0 20px rgba(122, 60, 255, 0.45),
     0 0 35px rgba(122, 60, 255, 0.25);
   color: #ffffff;
+  transform: scale(1.25);     /* 🔥 increase size */
+  transform-origin: center;
 }
 
 /* TITLE */

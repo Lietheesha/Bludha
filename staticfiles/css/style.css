@@ -33,7 +33,7 @@ body {
 }
 
 .robot-section img {
-  max-width: 300px;
+  max-width: 500px;
   width: 100%;
   height: auto;
   filter: drop-shadow(0 0 30px rgba(120, 80, 255, 0.6));

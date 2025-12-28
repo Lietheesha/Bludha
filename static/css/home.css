@@ -20,6 +20,8 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0 auto;
         }
 
 
@@ -35,10 +37,14 @@
 
         /* ========== Navigation Bar ========== */
         .navbar {
-            background-color: #172d00;
-            padding: 15px 85px;
+            position: fixed;
+            top: 0;
+            background-color: #00142d;
+            padding: 20px 55px;
+            margin: 0%;
             width: 100%;
             box-shadow: 0px 3.993px 3.993px 0px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
         }
 
         .nav-content {
@@ -58,7 +64,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 21px;
+            gap: 40px;
         }
 
         .nav-button {
@@ -90,15 +96,18 @@
 
         /* ========== Hero Section ========== */
         .hero-section {
+            position: relative;   /* IMPORTANT */
             width: 100%;
+            height: 980px;
+            padding-top: 90px;
         }
 
 
         .robot-container {
             position: absolute;
-            left: 442px;
-            top: 429px;
-            width: 460px;
+            left: 520px;
+            top: 260px;
+            width: 560px;
             height: 550px;
         }
 
@@ -107,13 +116,13 @@
             height: auto;
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-60%);
         }
 
         .hero-title {
             position: absolute;
-            left: 772px;
-            top: 288px;
+            left: 715px;
+            top: 180px;
             font-family: 'Negrita Pro', sans-serif;
             font-size: 96px;
             color: #cbd6dc;
@@ -122,8 +131,8 @@
 
         .label-ekit {
             position: absolute;
-            left: 85px;
-            top: 676px;
+            left: 65px;
+            top: 550px;
             display: flex;
             align-items: center;
             gap: 19px;
@@ -135,16 +144,11 @@
             color: #c9def0;
             text-shadow: 0px 3.34px 3.34px rgba(0, 0, 0, 0.25);
         }
-
-        .curve-ekit {
-            width: 265px;
-            height: 55px;
-        }
-
+        
         .label-game {
             position: absolute;
-            left: 843px;
-            top: 557px;
+            left: 700px;
+            top: 440px;
             display: flex;
             align-items: center;
             gap: 26px;
@@ -164,8 +168,8 @@
 
         .label-ide {
             position: absolute;
-            left: 893px;
-            top: 770px;
+            left: 720px;
+            top: 650px;
             display: flex;
             align-items: center;
             gap: 19px;
@@ -192,11 +196,10 @@
 
         .features-title {
             position: absolute;
-            left: 50%;
-            top: 154px;
+            left: 52%;
+            top: 75px;
             transform: translateX(-50%);
             width: 388px;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         .title-small {
@@ -214,9 +217,9 @@
         .features-robot {
             position: absolute;
             left: 50%;
-            top: 349px;
+            top: 180px;
             transform: translateX(-50%);
-            width: 460px;
+            width: 560px;
             height: 550px;
         }
 
@@ -227,7 +230,6 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
         .feature-box {
             position: absolute;
             width: 210px;
@@ -246,22 +248,22 @@
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
-        .feature-box-right {
-            left: 1030px;
-            top: 300px;
-        }
-
         .feature-box-left {
             left: 200px;
-            top: 655px;
+            top: 676px;
+        }
+
+        .feature-box-right {
+            left: 1100px;
+            top: 300px;
         }
 
         .buy-button {
             position: absolute;
             left: 1034px;
             top: 807px;
-            width: 206px;
-            height: 77px;
+            width: 240px;
+            height: 82px;
             border-radius: 72px;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             display: flex;
@@ -291,27 +293,6 @@
             position: relative;
             width: 100%;
             height: 980px;
-        }
-
-        .section-title-small {
-            position: absolute;
-            left: 486px;
-            top: 176px;
-            font-family: 'Negrita Pro', sans-serif;
-            font-size: 48px;
-            color: #7b7fa1;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        .section-title-large {
-            position: absolute;
-            left: 50%;
-            top: 224px;
-            transform: translateX(-50%);
-            font-family: 'Negrita Pro', sans-serif;
-            font-size: 96px;
-            color: #cbd6dc;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
         .phone-container {
@@ -345,97 +326,12 @@
             object-fit: cover;
         }
 
-        .feature-box-02 {
-            position: absolute;
-            width: 210px;
-            background-color: #090817;
-            border-radius: 8px;
-            border: 6px solid #e81cff;
-            padding: 50px 30px;
-            box-sizing: border-box;
-        }
-
-        .feature-box-02 p {
-            font-family: 'Rokkitt', serif;
-            font-size: 32px;
-            color: #00aeff;
-            text-align: center;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        .feature-box-02-left {
-            left: 200px;
-            top: 676px;
-        }
-
-        .feature-box-02-right {
-            left: 1030px;
-            top: 300px;
-        }
-
-        .install-button {
-            position: absolute;
-            left: 1074px;
-            top: 709px;
-            width: 206px;
-            height: 77px;
-            border-radius: 72px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .install-button .button-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 72px;
-            object-fit: cover;
-        }
-
-        .install-button span {
-            position: relative;
-            font-family: 'Negrita Pro', sans-serif;
-            font-size: 32px;
-            color: white;
-            z-index: 1;
-        }
 
         /* ========== Features Section 03 - Play with Kit-e-Kit ========== */
         .features-section-03 {
             position: relative;
             width: 100%;
             height: 980px;
-        }
-
-        .feature-box-03 {
-            position: absolute;
-            width: 210px;
-            background-color: #090817;
-            border-radius: 8px;
-            border: 6px solid #e81cff;
-            padding: 50px 30px;
-            box-sizing: border-box;
-        }
-
-        .feature-box-03 p {
-            font-family: 'Rokkitt', serif;
-            font-size: 32px;
-            color: #00aeff;
-            text-align: center;
-            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        }
-
-        .feature-box-03-left {
-            left: 200px;
-            top: 604px;
-        }
-
-        .feature-box-03-right {
-            left: 1030px;
-            top: 300px;
         }
 
         .install-button-03 {
@@ -450,22 +346,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-        }
-
-        .install-button-03 .button-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 72px;
-            object-fit: cover;
-        }
-
-        .install-button-03 span {
-            position: relative;
-            font-family: 'Negrita Pro', sans-serif;
-            font-size: 32px;
-            color: white;
-            z-index: 1;
         }
 
         /* ========== Product Details Section ========== */
