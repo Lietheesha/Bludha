@@ -1,9 +1,30 @@
         /* Font Face - Negrita Pro (Custom Font) */
         @font-face {
             font-family: 'Negrita Pro';
-            src: url('fonts.css') format('woff2'),
-                 url('fonts/NegritaPro.woff') format('woff');
+            src: url('../fonts/NegritaPro.ttf') format('truetype');
             font-weight: normal;
+            font-style: normal;
+        }
+        
+        /* Font Face - Rokkitt (Local Fonts) */
+        @font-face {
+            font-family: 'Rokkitt';
+            src: url('../fonts/Rokkitt-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Rokkitt';
+            src: url('../fonts/Rokkitt-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Rokkitt';
+            src: url('../fonts/Rokkitt-SemiBold.ttf') format('truetype');
+            font-weight: 600;
             font-style: normal;
         }
 
@@ -13,6 +34,11 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             background-image: url("../images/Login.png");
@@ -22,6 +48,8 @@
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0 auto;
+            overflow-x: hidden;
+            width: 100%;
         }
 
 
@@ -33,6 +61,9 @@
             background-attachment: fixed;
             min-height: 100vh;
             margin: 0 auto;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
         }
 
         /* ========== Navigation Bar ========== */
@@ -102,13 +133,45 @@
             padding-top: 90px;
         }
 
-
+        .stem-text {
+            position: absolute;
+            left: 358px;
+            top: 100px;
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 280px;
+            font-weight: bold;
+            color: rgba(185, 215, 232, 0.496); /* Light faded color - slightly more visible */
+            z-index: 0; /* Behind other elements */
+            line-height: 0.9;
+            letter-spacing: 25px;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.5; /* Additional fade effect */
+            white-space: nowrap;
+        }
+        .stem-text-2 {
+            position: absolute;
+            left: 440px;
+            top: 380px;
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 280px;
+            font-weight: bold;
+            color: rgba(185, 215, 232, 0.496); /* Light faded color - slightly more visible */
+            z-index: 0; /* Behind other elements */
+            line-height: 0.9;
+            letter-spacing: 25px;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.5; /* Additional fade effect */
+            white-space: nowrap;
+        }
         .robot-container {
             position: absolute;
             left: 520px;
             top: 260px;
             width: 560px;
             height: 550px;
+            z-index: 2; /* Above STEM text */
         }
 
         .robot-image {
@@ -127,6 +190,7 @@
             font-size: 96px;
             color: #cbd6dc;
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            z-index: 2; /* Above STEM text */
         }
 
         .label-ekit {
@@ -625,10 +689,19 @@
             }
 
             .stem-text {
-                left: 200px;
-                top: 100px;
-                width: 300px;
-                height: 295px;
+                left: 50px;
+                top: 80px;
+                font-size: 180px;
+                letter-spacing: 15px;
+            }
+            
+            .stem-text-2 {
+                left: 50px;
+                top: 260px;
+                font-size: 180px;
+                letter-spacing: 15px;
+                line-height: 0.9;
+                margin-top: 0;
             }
 
             .robot-container {
@@ -951,27 +1024,38 @@
             }
 
             .stem-text {
-                left: 50%;
-                transform: translateX(-50%);
-                top: 80px;
-                width: 200px;
-                height: 196px;
+                left: 10px;
+                top: 40px;
+                font-size: 100px;
+                letter-spacing: 8px;
+                transform: none;
+            }
+            
+            .stem-text-2 {
+                left: 10px;
+                top: 140px;
+                font-size: 100px;
+                letter-spacing: 8px;
+                line-height: 0.9;
+                margin-top: 0;
             }
 
             .robot-container {
                 left: 50%;
                 transform: translateX(-50%);
-                top: 250px;
+                top: 280px;
                 width: 250px;
                 height: 300px;
+                z-index: 2;
             }
 
             .hero-title {
                 left: 50%;
                 transform: translateX(-50%);
-                top: 150px;
+                top: 120px;
                 font-size: 48px;
                 text-align: center;
+                z-index: 2;
             }
 
             .label-ekit,
@@ -1209,5 +1293,518 @@
             .store-btn {
                 width: 200px;
                 justify-content: center;
+            }
+        }
+
+        /* ========== Medium Tablets (768px - 1024px) ========== */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .hero-section {
+                height: 800px;
+            }
+
+            .stem-text {
+                left: 50px;
+                top: 60px;
+                font-size: 200px;
+                letter-spacing: 18px;
+            }
+
+            .stem-text-2 {
+                left: 50px;
+                top: 260px;
+                font-size: 200px;
+                letter-spacing: 18px;
+                line-height: 0.9;
+                margin-top: 0;
+            }
+
+            .robot-container {
+                width: 400px;
+                height: 480px;
+                z-index: 2;
+            }
+
+            .hero-title {
+                font-size: 64px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 2;
+            }
+
+            .label-ekit,
+            .label-game,
+            .label-ide {
+                transform: scale(0.8);
+            }
+
+            .features-section,
+            .features-section-02,
+            .features-section-03 {
+                height: 850px;
+            }
+
+            .features-robot {
+                width: 400px;
+                height: 480px;
+            }
+
+            .product-section {
+                height: auto;
+                padding: 50px 40px;
+            }
+
+            .product-image-container {
+                max-width: 500px;
+            }
+
+            .product-details {
+                max-width: 550px;
+            }
+        }
+
+        /* ========== Large Tablets and Small Desktops (1025px - 1439px) ========== */
+        @media (min-width: 1025px) and (max-width: 1439px) {
+            .stem-text {
+                font-size: 240px;
+            }
+
+            .stem-text-2 {
+                font-size: 240px;
+            }
+
+            .hero-title {
+                font-size: 80px;
+            }
+        }
+
+        /* ========== Extra Small Devices (up to 480px) ========== */
+        @media (max-width: 480px) {
+            .stem-text {
+                left: 10px;
+                top: 30px;
+                font-size: 90px;
+                letter-spacing: 6px;
+            }
+
+            .stem-text-2 {
+                left: 10px;
+                top: 120px;
+                font-size: 90px;
+                letter-spacing: 6px;
+                line-height: 0.9;
+                margin-top: 0;
+            }
+
+            .hero-title {
+                font-size: 40px;
+                top: 100px;
+                z-index: 2;
+            }
+
+            .robot-container {
+                width: 200px;
+                height: 250px;
+                top: 240px;
+                z-index: 2;
+            }
+
+            .title-small {
+                font-size: 24px;
+            }
+
+            .title-large {
+                font-size: 44px;
+            }
+
+            .features-robot {
+                width: 200px;
+                height: 250px;
+            }
+
+            .feature-box,
+            .feature-box-02,
+            .feature-box-03 {
+                padding: 20px 15px;
+            }
+
+            .feature-box p,
+            .feature-box-02 p,
+            .feature-box-03 p {
+                font-size: 18px;
+            }
+
+            .product-title {
+                font-size: 28px;
+            }
+
+            .price {
+                font-size: 36px;
+            }
+
+            .product-features {
+                font-size: 16px;
+                padding-left: 20px;
+            }
+
+            .quantity-controls {
+                width: 180px;
+                height: 60px;
+            }
+
+            .quantity-btn {
+                font-size: 24px;
+            }
+
+            .quantity-value {
+                width: 80px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .product-buy-button {
+                padding: 15px 40px;
+                font-size: 22px;
+            }
+
+            .store-btn {
+                width: 180px;
+                padding: 10px 20px;
+            }
+        }
+
+        /* ========== Popup Modal Styles ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: #090817;
+            border: 6px solid #e81cff;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #cbd6dc;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #00aeff;
+        }
+
+        .modal-title {
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 42px;
+            color: #cbd6dc;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-family: 'Rokkitt', serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: #cbd6dc;
+            text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background-color: #0d3468;
+            border: 2px solid #3566a0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #cbd6dc;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00aeff;
+            box-shadow: 0 0 0 3px rgba(0, 174, 255, 0.2);
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #ff4444;
+            box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.2);
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .error-message {
+            display: none;
+            color: #ff4444;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            margin-top: 4px;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(203, 214, 220, 0.5);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            background-color: #00aeff;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 29.734px;
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background-color: #0099e6;
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .submit-button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .submit-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .submit-button.loading {
+            background-color: #0099e6;
+        }
+
+        .button-text {
+            display: inline;
+        }
+
+        .button-loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Message Styles */
+        .success-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInScale 0.5s ease;
+        }
+
+        .success-message.show {
+            display: flex;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00aeff, #0099e6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            margin-bottom: 20px;
+            animation: checkmark 0.6s ease;
+            box-shadow: 0px 4px 16px rgba(0, 174, 255, 0.4);
+        }
+
+        @keyframes checkmark {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-message h3 {
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 36px;
+            color: #cbd6dc;
+            margin-bottom: 12px;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .success-message p {
+            font-family: 'Rokkitt', serif;
+            font-size: 20px;
+            color: rgba(203, 214, 220, 0.8);
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* Responsive Modal Styles */
+        @media (max-width: 767px) {
+            .modal-content {
+                padding: 30px 20px;
+                max-width: 95%;
+            }
+
+            .modal-title {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+
+            .close {
+                right: 15px;
+                top: 15px;
+                font-size: 28px;
+            }
+
+            .form-group label {
+                font-size: 18px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .submit-button {
+                padding: 14px 28px;
+                font-size: 20px;
+            }
+
+            .success-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 36px;
+                margin-bottom: 16px;
+            }
+
+            .success-message h3 {
+                font-size: 28px;
+            }
+
+            .success-message p {
+                font-size: 18px;
+            }
+
+            .error-message {
+                font-size: 12px;
             }
         }

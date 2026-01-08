@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Submissions - Bludha</title>
+    <link rel="stylesheet" href="static/css/home.css">
+    <style>
+        body {
+            padding: 40px 20px;
+            background-color: #00142d;
+        }
+        .submissions-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #090817;
+            border: 6px solid #e81cff;
+            border-radius: 16px;
+            padding: 40px;
+        }
+        h1 {
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 48px;
+            color: #cbd6dc;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .submissions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .submission-count {
+            font-family: 'Rokkitt', serif;
+            font-size: 24px;
+            color: #cbd6dc;
+        }
+        .clear-button {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .clear-button:hover {
+            background-color: #cc0000;
+        }
+        .export-button {
+            background-color: #00aeff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .export-button:hover {
+            background-color: #0099e6;
+        }
+        .submissions-list {
+            display: grid;
+            gap: 20px;
+        }
+        .submission-card {
+            background-color: #0d3468;
+            border: 2px solid #3566a0;
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .submission-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px rgba(0, 174, 255, 0.3);
+        }
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .submission-name {
+            font-family: 'Negrita Pro', sans-serif;
+            font-size: 28px;
+            color: #cbd6dc;
+        }
+        .submission-date {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            color: rgba(203, 214, 220, 0.6);
+        }
+        .submission-details {
+            display: grid;
+            gap: 12px;
+        }
+        .detail-item {
+            display: flex;
+            gap: 12px;
+        }
+        .detail-label {
+            font-family: 'Rokkitt', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #00aeff;
+            min-width: 80px;
+        }
+        .detail-value {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #cbd6dc;
+            flex: 1;
+        }
+        .no-submissions {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(203, 214, 220, 0.6);
+            font-family: 'Rokkitt', serif;
+            font-size: 24px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00aeff;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #0099e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="submissions-container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <h1>Form Submissions</h1>
+        <div class="submissions-header">
+            <div class="submission-count" id="submissionCount">Loading...</div>
+            <div style="display: flex; gap: 10px;">
+                <button class="export-button" onclick="exportToJSON()">Export JSON</button>
+                <button class="clear-button" onclick="clearSubmissions()">Clear All</button>
+            </div>
+        </div>
+        <div class="submissions-list" id="submissionsList"></div>
+    </div>
+
+    <script>
+        function loadSubmissions() {
+            try {
+                const submissions = JSON.parse(localStorage.getItem('bludhaSubmissions') || '[]');
+                const listContainer = document.getElementById('submissionsList');
+                const countElement = document.getElementById('submissionCount');
+
+                countElement.textContent = `${submissions.length} Submission${submissions.length !== 1 ? 's' : ''}`;
+
+                if (submissions.length === 0) {
+                    listContainer.innerHTML = '<div class="no-submissions">No submissions yet. Form data will appear here.</div>';
+                    return;
+                }
+
+                // Sort by timestamp (newest first)
+                submissions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                listContainer.innerHTML = submissions.map(submission => {
+                    const date = new Date(submission.timestamp);
+                    const formattedDate = date.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    return `
+                        <div class="submission-card">
+                            <div class="submission-header">
+                                <div class="submission-name">${escapeHtml(submission.name)}</div>
+                                <div class="submission-date">${formattedDate}</div>
+                            </div>
+                            <div class="submission-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Email:</span>
+                                    <span class="detail-value">${escapeHtml(submission.email)}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Phone:</span>
+                                    <span class="detail-value">${escapeHtml(submission.phone)}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Message:</span>
+                                    <span class="detail-value">${escapeHtml(submission.message)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading submissions:', error);
+                document.getElementById('submissionsList').innerHTML = 
+                    '<div class="no-submissions">Error loading submissions. Please refresh the page.</div>';
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function exportToJSON() {
+            try {
+                const submissions = JSON.parse(localStorage.getItem('bludhaSubmissions') || '[]');
+                const dataStr = JSON.stringify(submissions, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `bludha-submissions-${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+            } catch (error) {
+                alert('Error exporting data: ' + error.message);
+            }
+        }
+
+        function clearSubmissions() {
+            if (confirm('Are you sure you want to delete all submissions? This action cannot be undone.')) {
+                localStorage.removeItem('bludhaSubmissions');
+                loadSubmissions();
+                alert('All submissions have been cleared.');
+            }
+        }
+
+        // Load submissions on page load
+        loadSubmissions();
+
+        // Refresh every 5 seconds to catch new submissions
+        setInterval(loadSubmissions, 5000);
+    </script>
+</body>
+</html>
