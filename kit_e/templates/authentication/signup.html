@@ -1,0 +1,89 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | MyApp</title>
+  <link rel="stylesheet" href="{% static 'css/sign.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!--<div class="robot-section">
+         <img src="{% static 'images/robot1.png' %}" alt="Robot">
+    </div>-->
+    <div class="auth-container">
+      <h2>Sign Up</h2>
+      <form id="signupForm" autocomplete="off" method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" id="first-name" name="firstName" required placeholder="First name">
+            <span class="error-message">First name required</span>
+          </div>
+          <div class="form-group">
+            <input type="text" id="last-name" name="lastName" placeholder="Last name">
+            <span class="error-message">Last name required</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="email" id="signup-email" name="email" required placeholder="Email">
+          <span class="error-message">Valid email required</span>
+        </div>
+        <div class="form-group">
+          <input type="password" id="signup-password" name="password" required minlength="4" pattern=".{4,}" placeholder="Password (min 4 chars)">
+          <span class="error-message">Password required (min 4 chars)</span>
+        </div>
+        <div class="form-group">
+          <input type="password" id="signup-confirm-password" name="confirmPassword" required minlength="4" pattern=".{4,}" placeholder="Confirm Password">
+          <span class="error-message">Confirm password required</span>
+        </div>
+        <div class="error-message match-error" aria-live="polite" style="display:none;">Passwords do not match</div>
+        <button type="submit" class="login-btn">Sign Up</button>
+        <div class="to-login">
+          Already have an account? <a href="{% url 'login' %}">Login here</a>
+        </div>
+      </form>
+    </div>
+    <!-- "Passwords do not match" validation: You must do this after submit on the server (no JS allowed).
+         Optionally, put a note for users. -->
+  </div>
+    <script>
+    $(document).ready(function () {
+
+        $('#signupForm').on('submit', function (e) {
+            e.preventDefault();
+
+            let password = $('#signup-password').val();
+            let confirmPassword = $('#signup-confirm-password').val();
+
+            if (password !== confirmPassword) {
+                $('.match-error').show();
+                return;
+            } else {
+                $('.match-error').hide();
+            }
+
+            $.ajax({
+                url: "{% url 'sign-up' %}",
+                type: "POST",
+                data: $(this).serialize(),
+                success: function (response) {
+
+                    if (response.success) {
+                        // ✅ REDIRECT TO LOGIN
+                        window.location.href = "{% url 'login' %}";
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    alert("Something went wrong. Please try again.");
+                }
+            });
+        });
+
+    });
+  </script>
+</body>
+</html>

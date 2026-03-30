@@ -1,0 +1,136 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* PAGE ALIGNMENT */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.page-wrapper {
+  display: flex;
+  justify-content: space-between;   /* right side */
+  align-items: center;         /* vertical center */
+  height: 100vh;
+  padding:0px 220px;
+  position: relative;
+  background: url("/static/images/bg2.jpeg") center/cover no-repeat;  /* change path */
+  overflow: hidden;
+}
+/* Robot column */
+.robot-section {
+  flex: 1;
+  display: flex;
+  align-items: left;
+  transform: translateX(5%);
+}
+
+.robot-section img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(120, 80, 255, 0.6));
+}
+
+/* LOGIN CARD */
+.auth-container {
+  flex-shrink: 0;
+  width: 320px;
+  height: 450px;
+  padding: 14px 22px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #0a1c3a, #07142b);
+  border: 6px solid #7a3cff;
+  box-shadow: 
+    0 0 8px rgba(122, 60, 255, 0.6),
+    0 0 20px rgba(122, 60, 255, 0.45),
+    0 0 35px rgba(122, 60, 255, 0.25);
+  color: #ffffff;
+}
+
+/* TITLE */
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 32px; 
+  font-weight: 800;
+  color: #3da9ff;
+}
+
+/* FORM GROUP */
+.form-group {
+  border-radius: 18px;
+}
+
+
+/* INPUTS */
+.form-group input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.form-group input:focus {
+  outline: 2px solid #3da9ff;
+}
+
+/* ERROR MESSAGE */
+.error-message {
+  display: none;
+  font-size: 12px;
+  color: #ff6b6b;
+  margin-top: 5px;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  width: 100%;
+  border-radius: 18px;
+  padding: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  background: linear-gradient(90deg, #2d9cff, #3f6cff);
+  border: none;
+  color: #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+/* LOGIN LINK */
+.to-login {
+  text-align: left;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.to-login a {
+  color: #3da9ff;
+  text-decoration: none;
+}
+
+.to-login a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .page-wrapper {
+    justify-content: center;
+    padding-right: 0;
+  }
+}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification | MyApp</title>
+    <link rel="stylesheet" href="{% static 'css/otp.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <div class="auth-container">
+
+        <h2>Email Verification</h2>
+
+        <!-- ================= EMAIL FORM ================= -->
+        <div id="otpForm" class="otp-form">
+            <p>Enter the 6 digit code set through the Registered Email</p>
+            <div class="otp-container">
+                <input maxlength="1" class="otp-input">
+                <input maxlength="1" class="otp-input">
+                <input maxlength="1" class="otp-input">
+                <input maxlength="1" class="otp-input">
+            </div>
+
+            <button class="login-btn">Verify →</button>
+            <p id="status"></p>
+        </div>
+        <div class="to-signup">
+            Already verified? <a href="{% url 'login' %}">Sign In</a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // ---------------- VERIFY OTP ----------------
+ $(".otp-input").on("keyup", function(){
+    if(this.value.length == 1){
+        $(this).next().focus();
+    }
+});
+
+$("#otpForm").submit(function(e){
+    e.preventDefault();
+
+    let otp = "";
+    $(".otp-input").each(function(){
+        otp += $(this).val();
+    });
+
+    $.ajax({
+        url: "/verify-otp/",
+        type: "POST",
+        data: {
+            otp: otp,
+            csrfmiddlewaretoken: "{{ csrf_token }}"
+        },
+        success: function(res){
+            if(res.status == "verified"){
+                $("#status").html("✅ Verified").css("color","green");
+                setTimeout(()=>window.location="/home",1200);
+            }else{
+                $("#status").html("❌ Invalid OTP").css("color","red");
+            }
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
